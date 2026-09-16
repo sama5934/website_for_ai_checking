@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Checker - Main Menu</title>
+    <!-- Connects to the same CSS file we already made -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* A tiny bit of extra CSS just for this page to make the buttons distinct */
+        a.primary-button {
+            text-decoration: none; /* Removes the underline from links */
+            box-sizing: border-box; /* Keeps the button size exact */
+            margin-bottom: 25px; /* Adds space between the two big buttons */
+        }
+        
+        .video-button {
+            background-color: #006600; /* A friendly green for the video button */
+        }
+        
+        .video-button:hover {
+            background-color: #004000; /* Darker green when hovering */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>What do you want to check?</h1>
+        <p class="instructions">Choose whether you want to check a picture or a video. We will guide you through the rest.</p>
+
+        <!-- These links use the "primary-button" style from style.css -->
+        <a href="photo.html" class="primary-button">📸 I have a PHOTO</a>
+        
+        <a href="video.html" class="primary-button video-button">🎞️ I have a VIDEO</a>
+
+        <p class="footer-note">🔒 Your media is safe and will never be shared or stored.</p>
+    </div>
+
+</body>
+</html>
