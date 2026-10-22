@@ -1,0 +1,104 @@
+/* style.css */
+
+/* General Page Setup */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #222222;
+    font-size: 24px; /* Large font for readability */
+    line-height: 1.5;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* The White Box Holding Everything */
+.container {
+    background-color: #ffffff;
+    max-width: 600px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* Typography */
+h1 {
+    font-size: 36px;
+    color: #004080;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+p.instructions {
+    margin-bottom: 30px;
+    color: #444;
+}
+
+/* The Dashed Upload Box */
+.upload-box {
+    border: 4px dashed #004080;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #e6f0ff;
+    margin-bottom: 30px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+    font-size: 26px;
+}
+
+input[type="file"] {
+    font-size: 22px;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Big Primary Button (For Uploading) */
+.primary-button {
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 20px 30px;
+    font-size: 26px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.primary-button:hover {
+    background-color: #00264d;
+}
+
+/* Secondary Button (For going back) */
+.secondary-button {
+    background-color: #e0e0e0;
+    color: #333333;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 22px;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box; /* keeps padding inside width */
+}
+
+.secondary-button:hover {
+    background-color: #cccccc;
+}
+
+/* Footer security note */
+.footer-note {
+    font-size: 18px;
+    color: #555555;
+    margin-top: 30px;
+}
