@@ -13,7 +13,7 @@ This project was built for a Software Engineering course and features a custom-t
 * **Single File Processing:** Frontend validation ensures only one file is uploaded at a time, complete with a visual loading bar to prevent user confusion during processing.
 
 ## Tech Stack
-* **Frontend:** HTML5, CSS3 (Custom warm theme), Vanilla JavaScript
+* **Frontend:** HTML5, CSS3 (Custom warm theme)
 * **Backend:** Python, Flask
 * **Machine Learning:** PyTorch, Torchvision, Pillow, Scikit-learn
 
