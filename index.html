@@ -4,38 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Checker - Main Menu</title>
-    <!-- Connects to the same CSS file we already made -->
+    <!-- This links to your warm, beautiful style.css file -->
     <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* A tiny bit of extra CSS just for this page to make the buttons distinct */
-        a.primary-button {
-            text-decoration: none; /* Removes the underline from links */
-            box-sizing: border-box; /* Keeps the button size exact */
-            margin-bottom: 25px; /* Adds space between the two big buttons */
-        }
-        
-        .video-button {
-            background-color: #006600; /* A friendly green for the video button */
-        }
-        
-        .video-button:hover {
-            background-color: #004000; /* Darker green when hovering */
-        }
-    </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>What do you want to check?</h1>
-        <p class="instructions">Choose whether you want to check a picture or a video. We will guide you through the rest.</p>
+        <h1>Photo & Video AI Checker</h1>
+        <p class="instructions">Find out if an image or video was created by a computer or a real person.</p>
 
-        <!-- These links use the "primary-button" style from style.css -->
-        <a href="photo.html" class="primary-button">📸 I have a PHOTO</a>
-        
-        <a href="video.html" class="primary-button video-button">🎞️ I have a VIDEO</a>
+        <!-- Simplified Step-by-Step Guide -->
+        <div class="instruction-box">
+            <h2>How to Use This Site:</h2>
+            <ol class="step-list">
+                <li><strong>Step 1:</strong> Choose whether you have a picture or a video by clicking one of the buttons below.</li>
+                <li><strong>Step 2:</strong> Select the file from your computer or phone.</li>
+                <li><strong>Step 3:</strong> Click the "Check" button and wait a few seconds for your result.</li>
+            </ol>
+        </div>
 
-        <p class="footer-note">🔒 Your media is safe and will never be shared or stored.</p>
+        <!-- Navigation Buttons -->
+        <a href="photo.html" class="primary-button">📸 Check a Photo</a>
+        <a href="video.html" class="primary-button video-button">🎞️ Check a Video</a>
+
+        <p class="footer-note">🔒 Safe & Private: Your files are never stored or shared.</p>
     </div>
 
 </body>
