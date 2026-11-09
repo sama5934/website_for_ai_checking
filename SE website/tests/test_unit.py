@@ -2,7 +2,7 @@ import hashlib, io
 from unittest.mock import patch
 from PIL import Image
 import pytest
-from app import app   # adjust to your module name
+from app import app   
 
 @pytest.fixture
 def client():
@@ -20,7 +20,7 @@ def test_route_receives_same_image_bytes(client):
     real_open = Image.open
 
     def spy_open(fp, *args, **kwargs):
-        received["bytes"] = fp.getvalue()   # fp is the BytesIO from your route
+        received["bytes"] = fp.getvalue()  
         return real_open(fp, *args, **kwargs)
 
     with patch("app.Image.open", side_effect=spy_open):
