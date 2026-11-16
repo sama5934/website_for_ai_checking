@@ -177,6 +177,10 @@ def upload_photo():
         
     try:
         image = Image.open(io.BytesIO(file_list[0].read())).convert("RGB")
+    except Exception:
+        return "That file could not be opened as an image. Please upload a JPG or PNG photo.", 400
+
+    try:
         tensor = photo_transforms(image).unsqueeze(0).to(device)
 
         with torch.no_grad():
@@ -187,8 +191,9 @@ def upload_photo():
         result = CLASS_NAMES[predicted_idx.item()]
         confidence_percent = f"{confidence.item() * 100:.1f}%"
         return render_result(result, confidence_percent, "/photo.html")
-    except Exception as e:
-        return f"Error processing photo: {str(e)}", 500
+    except Exception:
+        app.logger.exception("photo inference failed")
+        return "Something went wrong while analysing your photo. Please try again.", 500
 
 @app.route("/upload-video", methods=["POST"])
 def upload_video():
