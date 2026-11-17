@@ -33,7 +33,6 @@ SEARCH_CANDIDATES = [
 ]
 
 
-# --- Helpers (no test_ prefix, so pytest ignores them) ---
 
 def find_video_dir():
     """Return the first existing data_sample folder, or None."""
@@ -103,7 +102,7 @@ def make_dummy_video(path, n_frames=31, size=(64, 64), fps=10):
     writer.release()
 
 
-# --- Tests ---
+# Tests
 
 def test_extract_keyframes_invalid_file_returns_zero(tmp_path):
     saved = extract_keyframes(tmp_path / "does_not_exist.mp4", tmp_path / "out")
@@ -160,22 +159,12 @@ import torch.optim as optim
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 from torchvision.transforms import v2
-
-# Helpers from the first test file (same tests/ folder). If you rename that
-# file, update this import. Better long term: move the helpers into a normal
-# module such as pipeline.py next to app.py and import from there.
-from test_Etests import extract_all_frames, make_dummy_video  # noqa: F401
+from test_Etests import extract_all_frames, make_dummy_video  
 
 CLASS_TO_IDX = {"fake": 0, "real": 1}
 ALLOWED_EXTENSIONS = {".mp4", ".avi"}
 NORMALIZE = dict(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
-
-# =====================================================================
-# Pipeline code (no test_ prefix, nothing runs on import)
-# =====================================================================
-
-# --- Stratified group split -------------------------------------------------
 
 def build_video_index(frames_dir):
     """Scan frames_dir/{fake,real} and group frame paths by video id.
@@ -241,8 +230,6 @@ def gather_dataset_lists(vid_list, video_to_frames):
     return paths, labels
 
 
-# --- Dataset & transforms ---------------------------------------------------
-
 class VideoFrameDataset(Dataset):
     def __init__(self, paths, labels, transform=None):
         self.paths = paths
@@ -292,7 +279,6 @@ def make_loaders(train_paths, train_labels, val_paths, val_labels):
     return train_ds, val_ds, train_loader, val_loader
 
 
-# --- Model ------------------------------------------------------------------
 
 class CustomCNN(nn.Module):
     def __init__(self):
@@ -326,7 +312,7 @@ class CustomCNN(nn.Module):
         return self.fc2(x)
 
 
-# --- Training ---------------------------------------------------------------
+# Training 
 
 def train_model(model, train_loader, val_loader, train_ds, val_ds, device, epochs=15, lr=1e-4):
     """Train and return a list of (train_acc_percent, val_acc_percent), one per epoch."""
@@ -363,7 +349,7 @@ def train_model(model, train_loader, val_loader, train_ds, val_ds, device, epoch
     return history
 
 
-# --- File format validation -------------------------------------------------
+# File format validation 
 
 def is_valid_video_format(filename):
     if not isinstance(filename, str) or not filename.strip():
@@ -372,7 +358,7 @@ def is_valid_video_format(filename):
     return ext in ALLOWED_EXTENSIONS
 
 
-# --- Video-level prediction & metrics --------------------------------------
+# Video-level prediction & metrics
 
 def predict_video(model, video_path, device, frame_interval=15):
     """Average P(real) over every Nth frame. Returns None if the video can't be read
@@ -415,9 +401,7 @@ def compute_metrics(y_true, y_pred):
     return {"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1}
 
 
-# =====================================================================
 # Fixtures
-# =====================================================================
 
 @pytest.fixture
 def frames_dir(tmp_path):
@@ -438,9 +422,8 @@ def index(frames_dir):
     return build_video_index(str(frames_dir))
 
 
-# =====================================================================
 # Tests: split
-# =====================================================================
+
 
 def test_build_video_index_groups_frames_by_video(index):
     video_to_frames, real_ids, fake_ids = index
@@ -490,9 +473,8 @@ def test_gather_dataset_lists_matches_video_frames(index):
     assert sorted(set(labels)) == [0, 1]
 
 
-# =====================================================================
 # Tests: dataset & model
-# =====================================================================
+
 
 def test_dataset_item_has_expected_shape_and_label(index):
     video_to_frames, _, _ = index
@@ -538,9 +520,8 @@ def test_training_runs_and_reports_valid_accuracies(index):
     assert 0 <= val_acc <= 100
 
 
-# =====================================================================
 # Tests: file format validation
-# =====================================================================
+
 
 @pytest.mark.parametrize("name", ["sample_video.mp4", "clip.avi", "UPPERCASE_TEST.MP4"])
 def test_allowed_formats_pass(name):
@@ -559,9 +540,8 @@ def test_edge_cases_fail(name):
     assert not is_valid_video_format(name)
 
 
-# =====================================================================
 # Tests: video prediction & metrics
-# =====================================================================
+
 
 def test_predict_video_returns_probability(tmp_path):
     video = tmp_path / "clip.avi"
