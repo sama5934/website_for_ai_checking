@@ -20,7 +20,6 @@ class TestImageUpload(unittest.TestCase):
         return image_bytes
 
     def upload_valid_image(self, image_format, filename):
-        # stoping the AI from processing the image
         with patch.object(
             app_module.model,
             "forward",

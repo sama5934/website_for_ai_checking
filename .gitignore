@@ -1,2 +1,7 @@
+__pycache__/
+.pytest_cache/
+.env
+venv/
+image-2 copy.png
 data_sample
 video_frames
